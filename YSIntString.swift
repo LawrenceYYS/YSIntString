@@ -21,6 +21,14 @@ extension String {
     
 }
 
+func + (left: YSIntString, right: YSIntString) -> YSIntString {
+    return left.plus(right)
+}
+
+func - (left: YSIntString, right: YSIntString) -> YSIntString {
+    return left.minus(right)
+}
+
 class YSIntString : NSObject {
     
     //检查字符串函数，用于检查字符串是否符合整数格式
