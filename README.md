@@ -30,6 +30,7 @@
 
 ## 注意事项
 1.由于String本身的特性，在测试中发现超过5000000个字符的String在处理过程中已经占用了很多的处理器和内存资源，因此建议你在使用过程中避免使用过长的字符串。
+
 2.YSIntString会检查传入数据的格式是否正确，以下是YSIntString发现错误并解决的示例：
 ```Swift
   let intString1 = YSIntString.init("-000123四五六")
