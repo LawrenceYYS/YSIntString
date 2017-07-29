@@ -25,6 +25,7 @@
   let intString3 = intString1 + intString2 //intString1加intString2
   let intString4 = intString1 - intString2 //intString1减intString2
 ```
+注意：由于String本身的特性，在测试中发现超过5000000个字符的String在处理过程中已经占用了很多的处理器和内存资源，因此建议你在使用过程中避免使用过长的字符串。
 
 ## 最后说几句
 我期望YSIntString的高精度计算方式能给大家带来便利，也感谢大家能够选择YSIntString。在加减法部分发布之前，我进行了30万次随机数比对，结果均正确，但仍不排除其运算出错的可能性。在未来的时间里，我将继续更新YSIntString，为它增加乘法、除法、取余、乘方等功能。同样，在本次开发过程中，我发现许多时候条件的判断需要借助变量并结合if语句，因此我也在考虑编写YSConclusion来简化条件判断。如果大家对于YSIntString和YSConclusion有任何的意见和建议，我非常愿意听到你的声音，谢谢大家的支持！
