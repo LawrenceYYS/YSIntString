@@ -29,6 +29,10 @@ func - (left: YSIntString, right: YSIntString) -> YSIntString {
     return left.minus(right)
 }
 
+func * (left: YSIntString, right: YSIntString) -> YSIntString {
+    return left.multiply(right)
+}
+
 class YSIntString : NSObject {
     
     //检查字符串函数，用于检查字符串是否符合整数格式
@@ -228,6 +232,51 @@ class YSIntString : NSObject {
         a = YSIntString.checkString(a).value
         let b = YSIntString.init(a)
         return self.plus(b)
+    }
+    
+    func multiply(_ intString:YSIntString)->YSIntString {
+        var a = self;var b = intString;var c = 0;var d = "";var e = 1;var f = 1;var jinwei = 0;var g = YSIntString.init("0")
+        if a.negative == true {c = c + 1;a = YSIntString.init(a.value.substringWithRange(2, to: a.value.length))}
+        if b.negative == true {c = c + 1;b = YSIntString.init(b.value.substringWithRange(2, to: b.value.length))}
+        if a.value=="0"||b.value=="0" {
+            return YSIntString.init("0")
+        }
+        repeat{
+            repeat{
+                if f<a.value.length {
+                    let a1 = a.value.substringWithRange(a.value.length-f+1, to: a.value.length-f+1)
+                    let b1 = b.value.substringWithRange(b.value.length-e+1, to: b.value.length-e+1)
+                    var c1 = Int(a1)! * Int(b1)! + jinwei;jinwei = Int(c1/10);c1 = c1 % 10
+                    d = String(c1) + d
+                }else{
+                    let a1 = a.value.substringWithRange(1, to: 1)
+                    let b1 = b.value.substringWithRange(b.value.length-e+1, to: b.value.length-e+1)
+                    let c1 = Int(a1)! * Int(b1)! + jinwei
+                    d = String(c1) + d
+                }
+                f = f + 1
+            }while f<=a.value.length
+            if e>1 {
+                var h = e-1
+                repeat{
+                    d = d + "0"
+                    h = h - 1
+                }while h>0
+            }
+            jinwei = 0
+            d = YSIntString.init(YSIntString.checkString(d).value).value
+            g = g.plus(YSIntString.init(d))
+            d = ""
+            f = 1
+            e = e + 1
+        }while e<=b.value.length
+        if c==0||c==2 {
+            g  = YSIntString.init(YSIntString.checkString(g.value).value)
+            return g
+        }else{
+            let i = YSIntString.checkString((YSIntString.init("0")-g).value).value
+            return YSIntString.init(i)
+        }
     }
     
 }
