@@ -19,7 +19,7 @@
   let intString4 = intString1.minus(intString2) //intString1减intString2
   let intString5 = intString1.multiply(intString2) //intString1乘intString2
 ```
-4.由于在设计YSIntString时重载了加减运算符，因此以下代码与上一段代码等效：
+4.由于在设计YSIntString时重载了加减乘运算符，因此以下代码与上一段代码等效：
 ```Swift
   let intString1 = YSIntString.init("123456")
   let intString2 = YSIntString.init("234567")
