@@ -33,6 +33,11 @@ func * (left: YSIntString, right: YSIntString) -> YSIntString {
     return left.multiply(right)
 }
 
+func / (left: YSIntString, right: YSIntString) -> (quotient : YSIntString,remainder : YSIntString) {
+    let a = left.dividedBy(right)
+    return (a.quotient,a.remainder)
+}
+
 class YSIntString : NSObject {
     
     //检查字符串函数，用于检查字符串是否符合整数格式
@@ -277,6 +282,50 @@ class YSIntString : NSObject {
             let i = YSIntString.checkString((YSIntString.init("0")-g).value).value
             return YSIntString.init(i)
         }
+    }
+    
+    //除法函数，返回一个元组，商为quotient，余数为remainder
+    func dividedBy(_ intString : YSIntString) -> (quotient : YSIntString,remainder : YSIntString) {
+        var a = self;var b = intString;var c1 = 0;var c2 = 0;var d = YSIntString.init("0");var e = 0;var f = "";var anegative = false
+        var quotient = "0";var remainder = "0"
+        if a.negative == true {c1 = c1 + 1;a = YSIntString.init(a.value.substringWithRange(2, to: a.value.length));anegative = true}
+        if b.negative == true {c1 = c1 + 1;b = YSIntString.init(b.value.substringWithRange(2, to: b.value.length))}
+        if a.value=="0" {
+            return (YSIntString.init("0"),YSIntString.init("0"))
+        }else if b.value=="0" {
+            print("YSIntString在除法中遇到了除数0，默认返回0")
+            return (YSIntString.init("0"),YSIntString.init("0"))
+        }
+        if a.value.length < b.value.length {
+            return (YSIntString.init("0"),a)
+        }
+        c2 = a.value.length-b.value.length+1
+        if c2>1 {
+            repeat{
+                b.value = b.value + "0"
+            }while a.value.length>b.value.length
+        }
+        repeat{
+            repeat{
+                d = a - b
+                if d.negative==false {
+                    a = d;e = e + 1
+                }
+            }while (d.value != "0"&&d.negative==false)
+            f = f + String(e);e = 0;b.value = YSIntString.checkString(b.value.substringWithRange(1, to: b.value.length-1)).value
+            c2 = c2 - 1
+        }while c2>0
+        remainder = a.value
+        quotient = f
+        if anegative {
+            remainder = "-" + remainder
+        }
+        if c1==1 {
+            quotient = "-"+quotient
+        }
+        remainder = YSIntString.checkString(remainder).value
+        quotient = YSIntString.checkString(quotient).value
+        return (YSIntString.init(quotient),YSIntString.init(remainder))
     }
     
 }
