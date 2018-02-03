@@ -24,8 +24,8 @@
 ```
 4.由于在设计YSIntString时重载了加减乘和乘方运算符，并且添加了比较运算符，代码变得更加简洁：
 ```Swift
-  let intString1 = YSIntString.init("123456")
-  let intString2 = YSIntString.init("234567")
+  let intString1 = YSIntString("123456")
+  let intString2 = YSIntString("234567")
   let intString3 = intString1 + intString2 //intString1加intString2
   let intString4 = intString1 - intString2 //intString1减intString2
   let intString5 = intString1 * intString2 //intString1乘intString2
