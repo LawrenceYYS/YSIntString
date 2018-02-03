@@ -31,7 +31,7 @@
   let intString5 = intString1 * intString2 //intString1乘intString2
   let intString6 = intString1 ^ intString2 //intString1的intString2次幂
   let a = Bool(intString1 > intString2) //a的值为false
-  let b = Bool(intString1 < intString2) //a的值为true
+  let b = Bool(intString1 < intString2) //b的值为true
   //除法运算见第5部分
 ```
 5.YSIntString除法与加减乘在设计上有一些差距。除法和取余被合并在一个函数中来减少实际运用时的计算量。与加减乘相同的是，设计除法函数时也重载了除运算符。除法函数返回一个元组，你可以使用如下代码：
