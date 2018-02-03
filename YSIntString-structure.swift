@@ -3,7 +3,7 @@
 //  YSIntString
 //
 //  Created by 刘云玉树 on 2018/1/27.
-//  Copyright © 2017-2018年 刘云玉树. All rights reserved.
+//  Copyright © 2018年 刘云玉树. All rights reserved.
 //
 
 import Foundation
@@ -36,6 +36,50 @@ func * (left: YSIntString, right: YSIntString) -> YSIntString {
 func / (left: YSIntString, right: YSIntString) -> (quotient : YSIntString,remainder : YSIntString) {
     let a = left.dividedBy(right)
     return (a.quotient,a.remainder)
+}
+
+func ^ (left: YSIntString, right: YSIntString) -> YSIntString {
+    return left.power(right)
+}
+
+func > (left: YSIntString, right: YSIntString) -> Bool {
+    if (left.value != right.value)&&(left-right).negative==false {
+        return true
+    }else{
+        return false
+    }
+}
+
+func >= (left: YSIntString, right: YSIntString) -> Bool {
+    if (left-right).negative==false {
+        return true
+    }else{
+        return false
+    }
+}
+
+func < (left: YSIntString, right: YSIntString) -> Bool {
+    if left>=right {
+        return false
+    }else{
+        return true
+    }
+}
+
+func <= (left: YSIntString, right: YSIntString) -> Bool {
+    if left>right {
+        return false
+    }else{
+        return true
+    }
+}
+
+func == (left: YSIntString, right: YSIntString) -> Bool {
+    if left.value==right.value {
+        return true
+    }else{
+        return false
+    }
 }
 
 struct YSIntString {
@@ -325,6 +369,23 @@ struct YSIntString {
         remainder = self.checkString(remainder).value
         quotient = self.checkString(quotient).value
         return (YSIntString.init(quotient),YSIntString.init(remainder))
+    }
+    
+    func power(_ intString : YSIntString) -> YSIntString {
+        if intString.negative==true {
+            print("YSIntString目前不支持求负数次幂，默认返回0")
+            return YSIntString("0")
+        }else if self.value=="0"&&intString.value=="0" {
+            print("0的0次幂无意义，默认返回0")
+            return YSIntString("0")
+        }else{
+            var a = self;var b = intString;let c = self
+            repeat{
+                a = a * c
+                b = b - YSIntString("1")
+            }while (b.value != "0")
+            return a
+        }
     }
     
 }
