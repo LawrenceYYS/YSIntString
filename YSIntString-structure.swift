@@ -383,7 +383,7 @@ struct YSIntString {
             repeat{
                 a = a * c
                 b = b - YSIntString("1")
-            }while (b.value != "0")
+            }while (b > YSIntString("1"))
             return a
         }
     }
