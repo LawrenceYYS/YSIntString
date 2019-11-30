@@ -180,6 +180,10 @@ struct YSIntStringDev: Comparable {
         return lhs.multiply(rhs)
     }
     
+    static func / (lhs: YSIntStringDev, rhs: YSIntStringDev) throws -> (quotient : YSIntStringDev,remainder : YSIntStringDev) {
+        return try lhs.dividedBy(rhs)
+    }
+    
     /**
      返回给定YSIntString的绝对值对象。
      
